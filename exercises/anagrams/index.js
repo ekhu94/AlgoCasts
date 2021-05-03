@@ -15,17 +15,14 @@ function anagrams(stringA, stringB) {
     counter[char] = counter[char] + 1 || 1;
   }
   for (let char of cleanStr(stringB)) {
-    if (!counter[char]) {
-      return false;
-    } else {
-      counter[char]--;
-    }
+    if (!counter[char]) return false;
+    counter[char]--;
   }
   return true;
 }
 
 const cleanStr = (str) => {
-  return str.replace(/[^\w]/g, "").toLowerCase();
+  return str.replace(/[^\w]/g, '').toLowerCase();
 };
 
 module.exports = anagrams;
