@@ -9,13 +9,8 @@
 //   fib(4) === 3
 
 function fib(n) {
-  if (n === 0) return 0;
-  if (n <= 2) return 1;
-  const fibArr = [0, 1, 1];
-  while (fibArr.length <= n) {
-    fibArr.push(fibArr[fibArr.length - 1] + fibArr[fibArr.length - 2]);
-  }
-  return fibArr[fibArr.length - 1];
+  if (n < 2) return n;
+  return fib(n - 1) + fib(n - 2);
 }
 
 module.exports = fib;
