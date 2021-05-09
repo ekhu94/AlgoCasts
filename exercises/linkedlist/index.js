@@ -14,10 +14,13 @@ class LinkedList {
     this.head = null;
   }
 
-  //   insertFirst(data) {
-  //     const node = new Node(data);
-  //     this.head === node;
-  //   }
+  insertFirst(data) {
+    const node = new Node(data);
+    if (this.head) {
+      node.next = this.head;
+    }
+    this.head = node;
+  }
 }
 
 module.exports = { Node, LinkedList };
