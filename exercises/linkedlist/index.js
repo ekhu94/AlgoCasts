@@ -15,21 +15,16 @@ class LinkedList {
   }
 
   insertFirst(data) {
-    const node = new Node(data);
-    if (this.head) {
-      node.next = this.head;
-    }
-    this.head = node;
+    this.head = new Node(data, this.head);
   }
 
   size() {
+    let node = this.head;
     let count = 0;
-    const headNode = this.head;
-    while (this.head) {
+    while (node) {
       count++;
-      this.head = this.head.next;
+      node = node.next;
     }
-    this.head = headNode;
     return count;
   }
 }
