@@ -66,9 +66,6 @@ class LinkedList {
   }
 
   getAt(idx) {
-    if (idx >= this.size()) {
-      return null;
-    }
     let count = 0;
     let node = this.head;
     while (node) {
@@ -77,6 +74,21 @@ class LinkedList {
       node = node.next;
     }
     return null;
+  }
+
+  removeAt(idx) {
+    if (!this.head) return;
+    if (idx === 0) return (this.head = this.head.next || null);
+    let count = 1;
+    let node = this.head;
+    while (node.next) {
+      if (count === idx) {
+        return (node.next = node.next.next || null);
+      }
+      count++;
+      node = node.next;
+    }
+    return;
   }
 }
 
