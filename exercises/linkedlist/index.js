@@ -78,17 +78,10 @@ class LinkedList {
 
   removeAt(idx) {
     if (!this.head) return;
-    if (idx === 0) return (this.head = this.head.next || null);
-    let count = 1;
-    let node = this.head;
-    while (node.next) {
-      if (count === idx) {
-        return (node.next = node.next.next || null);
-      }
-      count++;
-      node = node.next;
-    }
-    return;
+    if (idx === 0) return (this.head = this.head.next);
+    const prev = this.getAt(idx - 1);
+    if (!prev || !prev.next) return;
+    return (prev.next = prev.next.next);
   }
 }
 
