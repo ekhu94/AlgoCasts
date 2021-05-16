@@ -19,13 +19,13 @@ class LinkedList {
   }
 
   size() {
-    let total = 0;
+    let count = 0;
     let node = this.head;
     while (node) {
-      total++;
+      count++;
       node = node.next;
     }
-    return total;
+    return count;
   }
 
   getFirst() {
@@ -46,16 +46,19 @@ class LinkedList {
   }
 
   removeFirst() {
-    if (this.size() < 2) return (this.head = null);
+    if (!this.head) return;
     this.head = this.head.next;
   }
 
   removeLast() {
-    if (this.size() < 2) return (this.head = null);
-    let node = this.head;
-    while (node.next) {
-      if (!node.next.next) return (node.next = null);
-      node = node.next;
+    if (!this.head) return;
+    if (!this.head.next) return (this.head = null);
+    let prev = this.head;
+    while (prev.next) {
+      if (!prev.next.next) {
+        return (prev.next = null);
+      }
+      prev = prev.next;
     }
   }
 
@@ -66,10 +69,13 @@ class LinkedList {
   }
 
   getAt(idx) {
+    if (!this.head) return null;
     let count = 0;
     let node = this.head;
     while (node) {
-      if (count === idx) return node;
+      if (count === idx) {
+        return node;
+      }
       count++;
       node = node.next;
     }
@@ -80,18 +86,17 @@ class LinkedList {
     if (!this.head) return;
     if (idx === 0) return (this.head = this.head.next);
     const prev = this.getAt(idx - 1);
-    if (!prev || !prev.next) return;
-    return (prev.next = prev.next.next);
+    if (prev && prev.next) {
+      prev.next = prev.next.next;
+    }
+    return;
   }
 
   insertAt(data, idx) {
     if (!this.head) return (this.head = new Node(data));
     if (idx === 0) return (this.head = new Node(data, this.head));
-    const prev = this.getAt(idx - 1);
-    if (!prev || !prev.next) {
-      return (this.getLast().next = new Node(data));
-    }
-    return (prev.next = new Node(data, prev.next));
+    const prev = this.getAt(idx - 1) || this.getLast();
+    prev.next = new Node(data, prev.next);
   }
 }
 
