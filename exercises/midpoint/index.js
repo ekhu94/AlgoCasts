@@ -15,14 +15,11 @@
 function midpoint(list) {
   let slow = list.head;
   let fast = list.head;
-  while (fast) {
-    if (fast.next && fast.next.next) {
-      fast = fast.next.next;
-      slow = slow.next;
-    } else {
-      return slow;
-    }
+  while (fast.next && fast.next.next) {
+    fast = fast.next.next;
+    slow = slow.next;
   }
+  return slow;
 }
 
 module.exports = midpoint;
