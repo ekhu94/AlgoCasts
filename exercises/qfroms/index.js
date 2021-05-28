@@ -20,8 +20,8 @@ class Queue {
     this.second = new Stack();
   }
 
-  add(n) {
-    this.first.push(n);
+  add(data) {
+    this.first.push(data);
   }
 
   remove() {
@@ -39,11 +39,11 @@ class Queue {
     while (this.first.peek()) {
       this.second.push(this.first.pop());
     }
-    const last = this.second.peek();
+    const item = this.second.peek();
     while (this.second.peek()) {
       this.first.push(this.second.pop());
     }
-    return last;
+    return item;
   }
 }
 
